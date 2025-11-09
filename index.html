@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EMI - Empowerment Ministries International</title>
+  <meta name="description" content="Empowerment Ministries International (EMI): To see souls saved, discipled, serving in ministry, and empowered to prosper in all aspects of life."/>
+  <meta name="theme-color" content="#1e2a38"/>
+  <link rel="icon" href="assets/images/logo.png"/>
+  <meta property="og:title" content="EMI - Empowerment Ministries International"/>
+  <meta property="og:description" content="Raising leaders, strengthening families, and reaching nations with the Gospel."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="assets/images/logo.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="EMI - Empowerment Ministries International"/>
+  <meta name="twitter:description" content="Raising leaders, strengthening families, and reaching nations with the Gospel."/>
+  <meta name="twitter:image" content="assets/images/logo.png"/>
+  <link rel="canonical" href="/"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/worship.jpg"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+  <a class="visually-hidden" href="#hero">Skip to content</a>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner container">
+      <img src="assets/images/logo.png" alt="EMI Logo" class="logo" width="160" height="56"/>
+      <nav aria-label="Primary">
+        <ul id="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#ministries">Ministries</a></li>
+          <li><a href="#watch">Watch</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#special-events">Events</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="controls">
+        <a href="#giving" class="btn">Give</a>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
+        <button class="menu-toggle icon-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero" role="banner" aria-label="Welcome">
+    <div class="hero-content on-dark">
+      <h1>Empowerment Ministries International</h1>
+      <p>Winning souls. We believe in God changing lives.</p>
+      <ul class="hero-chips">
+        <li>Sundays 9:00 & 10:30</li>
+        <li>Bloemfontein & Welkom</li>
+        <li>Families welcome</li>
+      </ul>
+      <a href="#visit" class="btn">Plan Your Visit</a>
+      <a href="#watch" class="btn btn-outline">Watch Live</a>
+    </div>
+    <div class="shape shape-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="#fff" fill-opacity="1" d="M0,32L60,42.7C120,53,240,75,360,80C480,85,600,75,720,74.7C840,75,960,85,1080,80C1200,75,1320,53,1380,42.7L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path></svg>
+    </div>
+  </section>
+
+  
+
+  <!-- About -->
+  <section class="about section-alt" id="about">
+    <h2>About EMI</h2>
+    <p>
+      Empowerment Ministries International (EMI) is a Christ-centered movement dedicated to raising leaders, strengthening families, and reaching nations with the transformative power of the Gospel.
+    </p>
+  </section>
+
+  <!-- Visit -->
+  <section id="visit" aria-label="Plan Your Visit">
+    <h2>Plan Your Visit</h2>
+    <div class="visit-grid container">
+      <div class="card">
+        <h3>Service Times</h3>
+        <p class="muted">Sundays: First service 9:00–10:00 • Second service 10:30–11:30</p>
+        <p class="muted">Mondays: Life Groups (various homes/venues)</p>
+      </div>
+      <div class="card">
+        <h3>Location</h3>
+        <p class="muted">Bloemfontein: Church Street</p>
+        <p class="muted">Welkom: MTC Hall, 80 Solomon Street, Riebeeckstad</p>
+        <p><a class="btn btn-outline" href="https://maps.google.com" target="_blank" rel="noopener">Get Directions</a></p>
+      </div>
+      <div class="card">
+        <h3>Families & Parking</h3>
+        <p class="muted">Wheelchair access, childcare available, and onsite parking with ushers to assist.</p>
+      </div>
+    </div>
+    <form id="visit-form" class="visit-form container" aria-label="Plan Your Visit Form">
+      <div>
+        <label for="visit-name">Your Name</label>
+        <input id="visit-name" name="name" type="text" placeholder="Your Name" required>
+      </div>
+      <div>
+        <label for="visit-email">Your Email</label>
+        <input id="visit-email" name="email" type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="full">
+        <label for="visit-campus">Which campus?</label>
+        <select id="visit-campus" name="campus" required>
+          <option value="">Select a campus…</option>
+          <option>Bloemfontein</option>
+          <option>Welkom</option>
+        </select>
+      </div>
+      <div class="full" style="text-align:center;">
+        <button type="submit" class="btn">Plan My Visit</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- What to Expect -->
+  <section id="expect" class="section-alt" aria-label="What to Expect">
+    <h2>What To Expect</h2>
+    <div class="expect-grid container">
+      <div class="expect-card">
+        <h4>Warm Welcome</h4>
+        <p class="muted">Friendly ushers and help at the info desk.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Vibrant Worship</h4>
+        <p class="muted">Passionate, modern worship focused on Jesus.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Life‑Giving Message</h4>
+        <p class="muted">Practical Bible teaching for everyday life.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Kids & Families</h4>
+        <p class="muted">Safe, fun kids ministry during Sunday services.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Parking</h4>
+        <p class="muted">Onsite parking with assistance from our team.</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- About -->
+  
+
+  <!-- Ministries -->
+  <section class="services" id="ministries">
+    <h2>Our Ministries</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">⛪</span>Sunday Services</h3>
+        <p>Two Sunday services: 9:00–10:00 and 10:30–11:30.</p>
+      </div>
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">🔥</span>Youth & Young Adults</h3>
+        <p>Equipping the next generation to be bold, faith-filled leaders.</p>
+      </div>
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">🌍</span>Global Outreach</h3>
+        <p>Serving communities locally and globally with compassion and love.</p>
+      </div>
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">🙏</span>Prayer & Healing</h3>
+        <p>Experience breakthrough in dedicated prayer and healing gatherings.</p>
+      </div>
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">👥</span>Life Groups</h3>
+        <p>Weekly small groups on Mondays for discipleship and community.</p>
+      </div>
+      <div class="service-card">
+        <h3><span class="icon" aria-hidden="true">📖</span>Bible School</h3>
+        <p>Grow in God’s Word through structured teaching and training.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcements -->
+  <section id="special-events" aria-label="Special Events">
+    <h2>Special Events</h2>
+    <div class="special-grid container">
+      <article class="special-card">
+        <div class="special-date" aria-hidden="true"><span class="month">Feb</span><span class="day">15</span></div>
+        <div class="special-body">
+          <h3>Youth Conference 2025</h3>
+          <p class="muted">Bloemfontein • 10:00</p>
+          <p class="muted">Equipping young leaders to rise with boldness, faith, and vision for the future.</p>
+          <div class="special-actions">
+            <a class="btn btn-outline" href="#contact">Details</a>
+          </div>
+        </div>
+      </article>
+      <article class="special-card">
+        <div class="special-date" aria-hidden="true"><span class="month">Mar</span><span class="day">09</span></div>
+        <div class="special-body">
+          <h3>Prayer & Healing Night</h3>
+          <p class="muted">Welkom • 18:00</p>
+          <p class="muted">An evening dedicated to prayer, worship, and believing God for miracles.</p>
+          <div class="special-actions">
+            <a class="btn btn-outline" href="#contact">Details</a>
+          </div>
+        </div>
+      </article>
+      <article class="special-card">
+        <div class="special-date" aria-hidden="true"><span class="month">TBA</span><span class="day">—</span></div>
+        <div class="special-body">
+          <h3>Leaders Summit</h3>
+          <p class="muted">Bloemfontein</p>
+          <p class="muted">A time of impartation and training for all team and ministry leaders.</p>
+          <div class="special-actions">
+            <a class="btn btn-outline" href="#contact">Register Interest</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Announcements -->
+  <section id="announcements" aria-label="Announcements">
+    <h2>Announcements</h2>
+    <div class="announce-grid container">
+      <article class="announce-card" data-date="2025-02-01">
+        <div class="announce-badge" aria-hidden="true">New</div>
+        <div class="announce-body">
+          <h3>Life Groups Resume</h3>
+          <p class="muted">Mondays across Bloemfontein & Welkom • 18:00</p>
+          <p class="muted">Find community and growth in a group near you. Ask at the info desk to get connected.</p>
+        </div>
+      </article>
+      <article class="announce-card" data-date="2025-02-10">
+        <div class="announce-badge" aria-hidden="true">New</div>
+        <div class="announce-body">
+          <h3>Bible School Enrollment</h3>
+          <p class="muted">Sign up now for the next term</p>
+          <p class="muted">Deepen your foundations in the Word. Limited seats available.</p>
+        </div>
+      </article>
+      <article class="announce-card" data-date="2025-01-20" data-expires="2025-02-20">
+        <div class="announce-badge" aria-hidden="true">New</div>
+        <div class="announce-body">
+          <h3>Volunteers Needed</h3>
+          <p class="muted">Kids, Ushers, Media</p>
+          <p class="muted">Serve with joy on Sundays. Training provided — sign up at the info desk.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Birthdays -->
+  <section id="birthdays" aria-label="Birthdays">
+    <h2>Birthdays</h2>
+    <div class="birthdays-header">
+      <p class="muted">Celebrating birthdays this month</p>
+    </div>
+    <div id="birthdays-list" class="birthdays-grid container"></div>
+  </section>
+
+  
+
+  <!-- Church Calendar -->
+  <section id="calendar" aria-label="Calendar">
+    <h2>Church Calendar</h2>
+    <div class="calendar container">
+      <div class="calendar-header">
+        <button class="cal-btn" id="cal-prev" aria-label="Previous month">‹</button>
+        <h3 id="cal-title" class="cal-title" aria-live="polite"></h3>
+        <button class="cal-btn" id="cal-next" aria-label="Next month">›</button>
+      </div>
+      <div class="calendar-grid" role="grid" aria-labelledby="cal-title">
+        <div role="row" class="cal-row cal-row--head">
+          <div class="cal-dow" role="columnheader">Sun</div>
+          <div class="cal-dow" role="columnheader">Mon</div>
+          <div class="cal-dow" role="columnheader">Tue</div>
+          <div class="cal-dow" role="columnheader">Wed</div>
+          <div class="cal-dow" role="columnheader">Thu</div>
+          <div class="cal-dow" role="columnheader">Fri</div>
+          <div class="cal-dow" role="columnheader">Sat</div>
+        </div>
+        <div id="cal-days" class="cal-days" role="rowgroup"></div>
+      </div>
+      <div class="calendar-aside">
+        <h4>Upcoming</h4>
+        <ul id="cal-upcoming" class="cal-upcoming" aria-live="polite"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Live -->
+  <section id="watch" aria-label="Watch Live">
+    <h2>Watch Live</h2>
+    <div class="section-center">
+      <p>Be part of our services online every Sunday and midweek via YouTube and Facebook.</p>
+      <div style="margin-top:1.5rem;">
+        <a href="https://www.youtube.com/@emiwelkom1310" target="_blank" rel="noopener" class="btn">Watch on YouTube</a>
+        <a href="https://www.facebook.com/EMIWelkom" target="_blank" rel="noopener" class="btn btn-outline">Watch on Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sermons -->
+  <section id="sermons" aria-label="Sermons">
+    <h2>Sermons</h2>
+    <div class="sermon-grid container">
+      <a class="sermon-card" href="https://www.youtube.com/@emiwelkom1310" target="_blank" rel="noopener">
+        <div class="sermon-card__icon" aria-hidden="true">▶</div>
+        <div>
+          <h3>YouTube Messages</h3>
+          <p class="muted">Catch up on recent sermons and subscribe for updates.</p>
+        </div>
+      </a>
+      <a class="sermon-card" href="https://www.facebook.com/EMIWelkom" target="_blank" rel="noopener">
+        <div class="sermon-card__icon" aria-hidden="true">📺</div>
+        <div>
+          <h3>Facebook Live</h3>
+          <p class="muted">Join live services and share with friends and family.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations" class="section-alt" aria-label="Locations">
+    <h2>Locations</h2>
+    <div class="visit-grid container">
+      <div class="card">
+        <h3>Bloemfontein</h3>
+        <p class="muted">Church Street, Bloemfontein</p>
+        <p class="muted">Sundays: 9:00–10:00 • 10:30–11:30</p>
+        <p class="muted">Wheelchair access • Childcare available • Onsite parking</p>
+        <div class="map-grid">
+          <div class="map-frame">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              src="https://www.google.com/maps?q=Church%20Street%2C%20Bloemfontein&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Welkom</h3>
+        <p class="muted">MTC Hall, 80 Solomon Street, Riebeeckstad, Welkom</p>
+        <p class="muted">Sundays: 9:00–10:00 • 10:30–11:30</p>
+        <p class="muted">Wheelchair access • Childcare available • Onsite parking</p>
+        <div class="map-grid">
+          <div class="map-frame">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              src="https://www.google.com/maps?q=MTC%20Hall%2C%2080%20Solomon%20Street%2C%20Riebeeckstad%2C%20Welkom&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  
+
+  <!-- Events -->
+  <section id="events" aria-label="Successful Events">
+    <h2>Successful Events</h2>
+    <div class="events-grid">
+      <div class="event-card">
+        <img src="assets/images/emi_worship_welkom.jpg" alt="Worship Event" loading="lazy">
+        <div class="content">
+          <h3>Worship Experience - Welkom</h3>
+          <p>An unforgettable night of worship and praise where many lives were touched by the presence of God.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="assets/images/welcome.jpg" alt="Outreach Programs" loading="lazy">
+        <div class="content">
+          <h3>Youth Conference 2025</h3>
+          <p>Equipping young leaders to rise with boldness, faith, and vision for the future.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="assets/images/worship.jpg" alt="Bloemfontein Events" loading="lazy">
+        <div class="content">
+          <h3>Global Outreach</h3>
+          <p>Taking the Gospel to the nations through missions, compassion projects, and soul-winning campaigns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Giving -->
+  <section id="giving" aria-label="Giving">
+    <h2>Giving</h2>
+    <div class="giving-grid container">
+      <div class="card">
+        <h3>Why We Give</h3>
+        <p class="muted">Your generosity fuels ministry, outreach, and transformed lives.</p>
+      </div>
+      <div class="card">
+        <h3>EFT / Bank Transfer</h3>
+        <p class="muted">Add your preferred reference. We can add full bank details once you share them.</p>
+        <p><a class="btn btn-outline" href="#contact">Contact Us for Details</a></p>
+      </div>
+      <div class="card">
+        <h3>Online Giving</h3>
+        <p class="muted">Prefer PayFast / SnapScan / PayPal? We can set this up.</p>
+        <p><a class="btn" href="#contact">Set Up Online Giving</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section id="leadership" aria-label="Leadership">
+    <h2>Leadership</h2>
+    <div class="team-group">
+      <h3>Pastoral Team</h3>
+      <div class="team">
+        <div class="team-card">
+          <div class="avatar lg" aria-hidden="true">👤</div>
+          <div>
+            <h4>Ps. Firstname Lastname</h4>
+            <p class="muted role">Lead Pastor</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="avatar lg" aria-hidden="true">👤</div>
+          <div>
+            <h4>Ps. Firstname Lastname</h4>
+            <p class="muted role">Associate Pastor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-group">
+      <h3>Campus Pastors</h3>
+      <div class="team">
+        <div class="team-card">
+          <div class="avatar" aria-hidden="true">🏛️</div>
+          <div>
+            <h4>Ps. Firstname Lastname</h4>
+            <p class="muted role">Bloemfontein Campus Pastor</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="avatar" aria-hidden="true">🏛️</div>
+          <div>
+            <h4>Ps. Firstname Lastname</h4>
+            <p class="muted role">Welkom Campus Pastor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-group">
+      <h3>Church Structure</h3>
+      <div class="visit-grid" style="max-width:1200px;">
+        <div class="card">
+          <h4>Governance</h4>
+          <p class="muted">Led by the Lead Pastor with an Elders team providing spiritual oversight and accountability.</p>
+        </div>
+        <div class="card">
+          <h4>Ministry Areas</h4>
+          <p class="muted">Worship, Next Gen (Kids/Youth), Groups, Outreach, Prayer, and Operations.</p>
+        </div>
+        <div class="card">
+          <h4>Serving Path</h4>
+          <p class="muted">Join a Life Group, complete Growth Track, and serve on a Dream Team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" aria-label="Stories">
+    <h2>Stories</h2>
+    <div class="testimonials container">
+      <blockquote class="quote">
+        <p>“God changed my life at EMI. I found family, purpose, and freedom.”</p>
+        <cite>— Church Member</cite>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“The Word is preached with clarity and power. So grateful!”</p>
+        <cite>— Visitor</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <label for="name">Your Name</label>
+      <input id="name" name="name" type="text" placeholder="Your Name" required/>
+      <label for="email">Your Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required/>
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="How can we pray for you?" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+      <p id="form-status" class="muted" role="status" aria-live="polite" style="margin-top:0.5rem;"></p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid container">
+      <div>
+        <img src="assets/images/logo.png" alt="EMI Logo" class="logo" width="140" height="56"/>
+        <p class="muted">Winning souls. God changes lives.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p class="muted">Bloemfontein: Church Street</p>
+        <p class="muted">Welkom: MTC Hall, 80 Solomon St, Riebeeckstad</p>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <p class="muted socials">
+          <a href="https://www.facebook.com/EMIWelkom" target="_blank" rel="noopener">👍 Facebook</a>
+          <a href="https://www.youtube.com/@emiwelkom1310" target="_blank" rel="noopener">▶ YouTube</a>
+        </p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1rem;">&copy; <span id="year">2025</span> EMI - Empowerment Ministries International · All Rights Reserved</p>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Empowerment Ministries International",
+    "alternateName": "EMI",
+    "slogan": "Winning souls. God changes lives.",
+    "url": "",
+    "logo": "assets/images/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/EMIWelkom",
+      "https://www.youtube.com/@emiwelkom1310"
+    ],
+    "location": [
+      {
+        "@type": "Place",
+        "name": "EMI Bloemfontein",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Church Street",
+          "addressLocality": "Bloemfontein",
+          "addressCountry": "ZA"
+        }
+      },
+      {
+        "@type": "Place",
+        "name": "EMI Welkom",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "MTC Hall, 80 Solomon Street, Riebeeckstad",
+          "addressLocality": "Welkom",
+          "addressCountry": "ZA"
+        }
+      }
+    ]
+  }
+  </script>
+  <script src="script.js" defer></script>
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
+</body>
+</html>

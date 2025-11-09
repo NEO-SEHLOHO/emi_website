@@ -1,0 +1,334 @@
+// Mobile navigation toggle + accessible state
+(function () {
+  const navLinks = document.getElementById('nav-links');
+  const menuToggle = document.getElementById('menu-toggle');
+  const header = document.querySelector('header');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    // Close on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }));
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus();
+      }
+    });
+  }
+  // Shrink header on scroll
+  const threshold = 80; // avoid flicker near the top
+  const onScroll = () => {
+    if (!header) return;
+    const scrolled = window.scrollY > threshold;
+    header.classList.toggle('scrolled', scrolled);
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// Theme toggle with persistence
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const THEME_KEY = 'emi.theme';
+  const stored = localStorage.getItem(THEME_KEY);
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+    if (btn) btn.setAttribute('aria-pressed', stored === 'dark' ? 'true' : 'false');
+  }
+  function currentTheme() {
+    return root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }
+  function setTheme(next) {
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(THEME_KEY, next);
+    if (btn) {
+      btn.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+      btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+  }
+  if (btn) {
+    // init icon
+    btn.textContent = currentTheme() === 'dark' ? '☀️' : '🌙';
+    btn.addEventListener('click', () => {
+      setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
+  }
+})();
+
+// Footer year
+(function () {
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) {
+    yearSpan.textContent = String(new Date().getFullYear());
+  }
+})();
+
+// Scrollspy for nav links
+(function () {
+  const nav = document.getElementById('nav-links');
+  if (!nav) return;
+  const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  const setActive = (id) => {
+    links.forEach(a => {
+      const match = a.getAttribute('href') === `#${id}`;
+      a.classList.toggle('active', match);
+      if (match) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
+  sections.forEach(sec => observer.observe(sec));
+})();
+
+// Back to top button
+(function () {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  const toggle = () => {
+    if (window.scrollY > 300) btn.classList.add('show'); else btn.classList.remove('show');
+  };
+  document.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+// Contact form basic handler (client-side only)
+(function () {
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (!form || !status) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+    if (!name || !email || !message) {
+      status.textContent = 'Please complete all fields.';
+      return;
+    }
+    status.textContent = 'Thank you! Your message has been recorded. We will get back to you.';
+    form.reset();
+  });
+})();
+
+// Visit mini-form: compose email to church office (no backend required)
+(function () {
+  const form = document.getElementById('visit-form');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const campus = String(data.get('campus') || '').trim();
+    if (!name || !email || !campus) return;
+    const subject = encodeURIComponent('Plan My Visit');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCampus: ${campus}`);
+    // TODO: replace with your church email address
+    const mailto = `mailto:office@example.com?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+  });
+})();
+
+// Birthdays (mock) - renders current month's birthdays into #birthdays-list
+(function () {
+  const container = document.getElementById('birthdays-list');
+  if (!container) return;
+  const now = new Date();
+  const monthIndex = now.getMonth();
+  const BIRTHDAYS = [
+    { md: '01-12', name: 'Thabo M.' },
+    { md: '02-05', name: 'Lerato P.' },
+    { md: '02-21', name: 'Michael K.' },
+    { md: '03-09', name: 'Akani S.' },
+    { md: '03-28', name: 'Nomsa D.' },
+    { md: '04-03', name: 'Aisha R.' },
+    { md: '05-17', name: 'David N.' },
+    { md: '06-01', name: 'Grace T.' },
+    { md: '07-11', name: 'Sipho B.' },
+    { md: '08-24', name: 'Kelebogile C.' },
+    { md: '09-02', name: 'Peter J.' },
+    { md: '10-19', name: 'Sibongile Z.' },
+    { md: '11-08', name: 'Andrew H.' },
+    { md: '12-22', name: 'Faith L.' }
+  ];
+  const items = BIRTHDAYS
+    .map(b => ({ ...b, m: Number(b.md.slice(0,2)) - 1, d: Number(b.md.slice(3,5)) }))
+    .filter(b => b.m === monthIndex)
+    .sort((a,b) => a.d - b.d);
+  if (!items.length) {
+    container.innerHTML = `<p class="muted">No birthdays recorded for this month.</p>`;
+    return;
+  }
+  container.innerHTML = items.map(b => `
+    <div class="birthday-card">
+      <div class="bday-badge">${String(b.d).padStart(2,'0')}</div>
+      <div>
+        <p class="bday-name">${b.name}</p>
+        <p class="bday-meta">${new Date(2000, monthIndex, b.d).toLocaleString(undefined, { month: 'long', day: 'numeric' })}</p>
+      </div>
+    </div>
+  `).join('');
+})();
+
+// Announcements helper: mark "New" for recent items and hide expired
+(function () {
+  const cards = document.querySelectorAll('.announce-card');
+  if (!cards.length) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  cards.forEach(card => {
+    const dateStr = card.getAttribute('data-date');
+    const expiresStr = card.getAttribute('data-expires');
+    const badge = card.querySelector('.announce-badge');
+    if (expiresStr) {
+      const exp = new Date(expiresStr);
+      exp.setHours(0,0,0,0);
+      if (today > exp) {
+        card.remove();
+        return;
+      }
+    }
+    if (badge && dateStr) {
+      const posted = new Date(dateStr);
+      posted.setHours(0,0,0,0);
+      const diffDays = (today - posted) / (1000 * 60 * 60 * 24);
+      if (diffDays > 14) {
+        badge.style.display = 'none';
+      }
+    }
+  });
+})();
+
+// Calendar (client-side month view with upcoming list)
+(function () {
+  const titleEl = document.getElementById('cal-title');
+  const daysEl = document.getElementById('cal-days');
+  const prevBtn = document.getElementById('cal-prev');
+  const nextBtn = document.getElementById('cal-next');
+  const upcomingEl = document.getElementById('cal-upcoming');
+  if (!titleEl || !daysEl || !prevBtn || !nextBtn || !upcomingEl) return;
+
+  // Editable events data
+  // Use YYYY-MM-DD for single-day events; include time optionally
+  const EVENTS = [
+    // Example fixed events
+    { date: '2025-01-26', title: 'Worship Experience - Welkom', time: '18:00', location: 'Welkom Campus' },
+    { date: '2025-02-15', title: 'Youth Conference', time: '10:00', location: 'Bloemfontein' },
+    // Weekly Sunday services (we’ll generate below)
+  ];
+
+  // Generate Sunday services for the next 3 months
+  (function addSundayServices() {
+    const now = new Date();
+    const end = new Date(now);
+    end.setMonth(end.getMonth() + 3);
+    const d = new Date(now);
+    d.setDate(d.getDate() - ((d.getDay() + 7) % 7)); // move to previous Sunday
+    while (d <= end) {
+      // Two services
+      const iso = toISO(d);
+      EVENTS.push({ date: iso, title: 'Sunday Service (1st)', time: '09:00', location: 'All Campuses' });
+      EVENTS.push({ date: iso, title: 'Sunday Service (2nd)', time: '10:30', location: 'All Campuses' });
+      d.setDate(d.getDate() + 7);
+    }
+  })();
+
+  let view = new Date(); // current view month
+  view.setDate(1);
+
+  prevBtn.addEventListener('click', () => { view.setMonth(view.getMonth() - 1); render(); });
+  nextBtn.addEventListener('click', () => { view.setMonth(view.getMonth() + 1); render(); });
+
+  function render() {
+    const month = view.getMonth();
+    const year = view.getFullYear();
+    titleEl.textContent = view.toLocaleString(undefined, { month: 'long', year: 'numeric' });
+
+    // Build days grid
+    daysEl.innerHTML = '';
+    const firstDay = new Date(year, month, 1);
+    const startIndex = firstDay.getDay(); // 0=Sun
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const prevMonthDays = new Date(year, month, 0).getDate();
+
+    // Previous month placeholders
+    for (let i = 0; i < startIndex; i++) {
+      const num = prevMonthDays - startIndex + 1 + i;
+      daysEl.appendChild(dayCell(new Date(year, month - 1, num), true));
+    }
+    // Current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      daysEl.appendChild(dayCell(new Date(year, month, d), false));
+    }
+    // Next month placeholders to fill the grid to multiple of 7
+    const totalCells = startIndex + daysInMonth;
+    const nextCount = (Math.ceil(totalCells / 7) * 7) - totalCells;
+    for (let i = 1; i <= nextCount; i++) {
+      daysEl.appendChild(dayCell(new Date(year, month + 1, i), true));
+    }
+
+    // Upcoming list (next 6 events)
+    const today = new Date(); today.setHours(0,0,0,0);
+    const upcoming = EVENTS
+      .map(e => ({ ...e, dateObj: parseISO(e.date) }))
+      .filter(e => e.dateObj >= today)
+      .sort((a,b) => a.dateObj - b.dateObj)
+      .slice(0, 6);
+    upcomingEl.innerHTML = upcoming.map(e => `
+      <li>
+        <div class="cal-date">${e.dateObj.getDate()}</div>
+        <div>
+          <p class="cal-text"><strong>${e.title}</strong></p>
+          <p class="muted">${e.dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric', weekday: 'short' })}${e.time ? ' · ' + e.time : ''}${e.location ? ' · ' + e.location : ''}</p>
+        </div>
+      </li>
+    `).join('');
+  }
+
+  function dayCell(date, outside) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-day' + (outside ? ' outside' : '');
+    const today = new Date(); today.setHours(0,0,0,0);
+    const iso = toISO(date);
+    if (date.getTime() === today.getTime()) cell.classList.add('today');
+    const dayEvents = EVENTS.filter(e => e.date === iso);
+    if (dayEvents.length) cell.classList.add('has-event');
+    cell.setAttribute('data-date', iso);
+    cell.title = dayEvents.map(e => `${e.title}${e.time ? ' @ ' + e.time : ''}`).join('\n');
+    const num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = String(date.getDate());
+    cell.appendChild(num);
+    return cell;
+  }
+
+  function toISO(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+  function parseISO(s) {
+    const [y,m,d] = s.split('-').map(Number);
+    return new Date(y, m-1, d);
+  }
+
+  render();
+})();
